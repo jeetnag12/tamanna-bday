@@ -2,7 +2,7 @@
    HAPPY BIRTHDAY TAMANNA - EXACT FILENAMES MAPPING & MASONRY ENGINE
    ========================================================================== */
 
-// Explicit array mapping EVERY SINGLE file currently inside tamanna/ folder
+// Explicit array mapping all OTHER files in tamanna/ directory for the masonry grid
 const tamannaMediaFiles = [
     "1.jpg",
     "2.jpg",
@@ -182,16 +182,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ----------------------------------------------------------------------
-       3. DYNAMIC MASONRY GRID FOR EVERY SINGLE FILE IN tamanna/
+       3. DYNAMIC MASONRY GRID FOR ALL OTHER FILES IN tamanna/
        ---------------------------------------------------------------------- */
     const masonryGrid = document.getElementById('masonry-grid');
     const loadMoreBtn = document.getElementById('load-more-btn');
     const BATCH_SIZE = 28;
     let currentIndex = 0;
 
-    // Filter out 1.jpg (used in Hero) from gallery grid to avoid duplication if desired, 
-    // or include all files. We will render all remaining items.
-    const galleryItems = tamannaMediaFiles.filter(file => file !== "1.jpg");
+    // Filter out the hero cover image (IMG-20260919-WA0071.jpg) to avoid duplication in grid
+    const galleryItems = tamannaMediaFiles.filter(file => file !== "IMG-20260919-WA0071.jpg");
 
     function renderBatch() {
         if (!masonryGrid) return;
@@ -218,6 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 video.loop = true;
                 video.muted = true;
                 video.playsInline = true;
+                video.setAttribute('autoplay', '');
+                video.setAttribute('loop', '');
+                video.setAttribute('muted', '');
                 video.setAttribute('playsinline', '');
                 video.preload = 'metadata';
 
@@ -447,7 +449,6 @@ document.addEventListener('DOMContentLoaded', () => {
         triggerConfetti();
         
         setTimeout(() => {
-            wishModal.classList.active = true;
             wishModal.classList.add('active');
             wishModal.setAttribute('aria-hidden', 'false');
         }, 400);
