@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Tamanna | A Magical Journey</title>
-    <meta name="description" content="A scroll-to-reveal Happy Birthday website celebrating Tamanna with GSAP animations, clean white background, soft pink & sky blue aesthetic.">
+    <title>Happy Birthday Tamanna | A Magical Memory Gallery</title>
+    <meta name="description" content="A scroll-to-reveal Happy Birthday tribute for Tamanna featuring all photos and videos in a beautiful masonry grid.">
 
     <!-- Google Fonts: Outfit (Headings) & Plus Jakarta Sans (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,11 +19,11 @@
     <!-- Ambient Floating Particles Canvas -->
     <canvas id="ambient-canvas"></canvas>
 
-    <!-- Navigation Header -->
+    <!-- Navigation Bar -->
     <header class="navbar">
         <div class="nav-brand">
             <span class="nav-heart">💖</span>
-            <span class="nav-title">For Tamanna</span>
+            <span class="nav-title">Tamanna's Celebration</span>
         </div>
         
         <!-- Ambient Music Toggle Button -->
@@ -33,14 +33,15 @@
         </button>
     </header>
 
-    <!-- Scroll Progress Line -->
+    <!-- Scroll Progress Indicator Bar -->
     <div class="scroll-progress-bar" id="scroll-progress"></div>
 
     <!-- MAIN CONTENT -->
     <main>
 
         <!-- ========================================== -->
-        <!-- 1. HERO SECTION (100vh)                    -->
+        <!-- 1. HERO SECTION                            -->
+        <!-- Uses first photo (tamanna/1.jpg) as cover   -->
         <!-- ========================================== -->
         <section class="hero-section" id="hero">
             <div class="hero-content">
@@ -50,22 +51,22 @@
                     <span>CELEBRATING TAMANNA</span>
                 </div>
                 
-                <!-- Huge Gradient Text -->
+                <!-- Soft Sky Blue and Soft Pink Gradient Text -->
                 <h1 class="hero-title hero-reveal">
-                    <span class="title-sub">Wishing You A Very</span>
+                    <span class="title-sub">Wishing You The Happiest</span>
                     <span class="title-main gradient-text">Happy Birthday</span>
                 </h1>
                 
-                <!-- Main Center Cover Image -->
+                <!-- Main Cover Photo (tamanna/1.jpg) -->
                 <div class="hero-cover-wrapper hero-reveal">
                     <div class="hero-cover-frame pink-shadow">
-                        <img src="tamanna/IMG-20260919-WA0071.jpg" alt="Main Cover" class="hero-cover-img" id="hero-cover">
+                        <img src="tamanna/1.jpg" alt="Tamanna Cover Photo" class="hero-cover-img" id="hero-cover-img">
                     </div>
                 </div>
 
-                <!-- Scroll Down Hint Indicator -->
-                <a href="#chapter-1" class="scroll-indicator hero-reveal" aria-label="Scroll down to begin journey">
-                    <span class="scroll-text">Scroll To Reveal</span>
+                <!-- Scroll Hint -->
+                <a href="#gallery-section" class="scroll-indicator hero-reveal" aria-label="Scroll down to explore gallery">
+                    <span class="scroll-text">Scroll To Reveal Memories</span>
                     <div class="scroll-mouse">
                         <div class="scroll-wheel"></div>
                     </div>
@@ -74,93 +75,32 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- 2. CHAPTER 1: THE EARLY DAYS              -->
-        <!-- Side-by-Side Staggered Layout             -->
+        <!-- 2. MEMORY MASONRY GRID SECTION             -->
+        <!-- Displays all photos and videos from tamanna/-->
         <!-- ========================================== -->
-        <section class="chapter-section" id="chapter-1">
-            <div class="chapter-header">
-                <span class="section-tag blue-accent">CHAPTER 01</span>
-                <h2 class="section-title gradient-text">The Early Days</h2>
-                <p class="section-subtitle">Where every smile began a beautiful story.</p>
+        <section class="gallery-section" id="gallery-section">
+            
+            <div class="gallery-header">
+                <span class="section-tag blue-accent">MEMORY TIMELINE</span>
+                <h2 class="section-title gradient-text">Moments & Moving Pictures</h2>
+                <p class="section-subtitle">Every single memory captured through time, revealed as you scroll.</p>
                 <div class="pink-blue-divider"></div>
             </div>
 
-            <div class="staggered-container">
-                <!-- Image 1 (Soft Pink Shadow) -->
-                <div class="staggered-card card-left gsap-slide-up">
-                    <div class="media-frame pink-shadow">
-                        <img src="tamanna/IMG-20250208-WA0017.jpg" alt="The Early Days - Memory 1" class="media-element">
-                    </div>
-                    <div class="card-caption">
-                        <span class="caption-date">Cherished Moment</span>
-                        <h4>Unforgettable Smiles</h4>
-                    </div>
-                </div>
+            <!-- Dynamic Masonry Grid for all .jpg and .mp4 files in tamanna/ -->
+            <div class="masonry-grid" id="masonry-grid"></div>
 
-                <!-- Image 2 (Sky Blue Shadow) -->
-                <div class="staggered-card card-right gsap-slide-up">
-                    <div class="media-frame blue-shadow">
-                        <img src="tamanna/IMG-20250930-WA0390.jpg" alt="The Early Days - Memory 2" class="media-element">
-                    </div>
-                    <div class="card-caption">
-                        <span class="caption-date">Golden Memory</span>
-                        <h4>Simple Joys & Laughter</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- 3. CHAPTER 2: THE MOVING MEMORY            -->
-        <!-- Large Framed Center Video                  -->
-        <!-- ========================================== -->
-        <section class="chapter-section" id="chapter-2">
-            <div class="chapter-header">
-                <span class="section-tag pink-accent">CHAPTER 02</span>
-                <h2 class="section-title gradient-text">The Moving Memory</h2>
-                <p class="section-subtitle">Moments in motion that warm the heart.</p>
-                <div class="pink-blue-divider"></div>
-            </div>
-
-            <div class="center-video-container gsap-slide-up">
-                <div class="video-frame dual-shadow">
-                    <!-- Center Video Tag -->
-                    <video src="tamanna/VID-20260201-WA0004.mp4" autoplay loop muted playsinline class="center-video-element" poster="tamanna/1.jpg">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-overlay-badge">
-                        <span>▶ MOVING PICTURE</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- 4. CHAPTER 3: THE BIG MEMORY GRID         -->
-        <!-- Dynamic Masonry Grid for 125 Files         -->
-        <!-- ========================================== -->
-        <section class="chapter-section grid-section" id="chapter-3">
-            <div class="chapter-header">
-                <span class="section-tag blue-accent">CHAPTER 03</span>
-                <h2 class="section-title gradient-text">The Big Memory Grid</h2>
-                <p class="section-subtitle">A collection of 125 precious moments captured through time.</p>
-                <div class="pink-blue-divider"></div>
-            </div>
-
-            <!-- Masonry Grid Container dynamically populated by JavaScript -->
-            <div class="masonry-grid" id="gallery-grid"></div>
-
-            <!-- Optional Load More Button for visual comfort -->
+            <!-- Load More Controls for smooth performance -->
             <div class="grid-actions">
                 <button id="load-more-btn" class="load-more-button">
-                    <span>Show More Memories ✨</span>
+                    <span>Load More Memories ✨</span>
                 </button>
             </div>
         </section>
 
         <!-- ========================================== -->
-        <!-- 5. FOOTER & CLOSING MESSAGE                -->
-        <!-- Clean White, Dark Pink Area & Sky Blue Button-->
+        <!-- 3. FOOTER SECTION & FINAL MESSAGE          -->
+        <!-- Clean White, Dark Pink Area & Sky Blue Btn -->
         <!-- ========================================== -->
         <footer class="footer-section" id="footer">
             <div class="footer-container gsap-slide-up">
@@ -168,12 +108,12 @@
                 <!-- Dark Pink Short Message Container -->
                 <div class="dark-pink-card">
                     <div class="card-sparkle-top">💖</div>
-                    <span class="dark-pink-tag">A HEARTFELT WISH</span>
+                    <span class="dark-pink-tag">WITH ALL MY LOVE</span>
                     <h2 class="dark-pink-title">Happy Birthday, Tamanna!</h2>
                     
                     <div class="dark-pink-message">
                         <p>
-                            May your day be filled with endless smiles, warmth, and laughter. Thank you for being such an extraordinary person and lighting up every room you enter. Here’s to a year ahead filled with health, wild dreams, and boundless happiness!
+                            May your birthday be as beautiful, sweet, and extraordinary as you are. Thank you for filling every day with warmth, laughter, and happiness. Here is to a magnificent new chapter filled with endless love and adventure!
                         </p>
                     </div>
                 </div>
@@ -196,7 +136,7 @@
     </main>
 
     <!-- ========================================== -->
-    <!-- INTERACTIVE BIRTHDAY WISH MODAL            -->
+    <!-- INTERACTIVE WISH MODAL DIALOG              -->
     <!-- ========================================== -->
     <div id="wish-modal" class="modal-backdrop" aria-hidden="true">
         <div class="modal-card">
@@ -209,7 +149,7 @@
             <div class="modal-divider"></div>
             
             <p class="modal-body-text">
-                "May your upcoming year be full of unconditional happiness, amazing adventures, good health, and sweet surprises."
+                "May your upcoming year be full of unconditional happiness, health, success, and sweet surprises."
             </p>
 
             <button id="modal-ack-btn" class="modal-action-btn">

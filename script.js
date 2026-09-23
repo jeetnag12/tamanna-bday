@@ -1,9 +1,141 @@
 /* ==========================================================================
-   HAPPY BIRTHDAY TAMANNA - JAVASCRIPT & GSAP MASONRY ENGINE
+   HAPPY BIRTHDAY TAMANNA - EXACT FILENAMES MAPPING & MASONRY ENGINE
    ========================================================================== */
 
-// 1. Array variable named galleryImages pre-filled from '1.jpg' to '125.jpg'
-const galleryImages = Array.from({ length: 125 }, (_, i) => `${i + 1}.jpg`);
+// Explicit array mapping EVERY SINGLE file currently inside tamanna/ folder
+const tamannaMediaFiles = [
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
+    "4.mp4",
+    "5.jpg",
+    "5.mp4",
+    "6.jpg",
+    "6.mp4",
+    "7.jpg",
+    "7.mp4",
+    "8.jpg",
+    "8.mp4",
+    "9.jpg",
+    "9.mp4",
+    "10.jpg",
+    "10.mp4",
+    "11.jpg",
+    "12.jpg",
+    "12.mp4",
+    "13.jpg",
+    "13.mp4",
+    "14.jpg",
+    "14.mp4",
+    "15.jpg",
+    "16.jpg",
+    "17.jpg",
+    "18.jpg",
+    "19.jpg",
+    "20.jpg",
+    "21.jpg",
+    "22.jpg",
+    "23.jpg",
+    "24.jpg",
+    "25.jpg",
+    "26.jpg",
+    "27.jpg",
+    "28.jpg",
+    "29.jpg",
+    "30.jpg",
+    "31.jpg",
+    "32.jpg",
+    "33.jpg",
+    "34.jpg",
+    "35.jpg",
+    "36.jpg",
+    "37.jpg",
+    "38.jpg",
+    "39.jpg",
+    "40.jpg",
+    "41.jpg",
+    "42.jpg",
+    "43.jpg",
+    "44.jpg",
+    "45.jpg",
+    "46.jpg",
+    "47.jpg",
+    "48.jpg",
+    "49.jpg",
+    "50.jpg",
+    "51.jpg",
+    "52.jpg",
+    "53.jpg",
+    "54.jpg",
+    "55.jpg",
+    "56.jpg",
+    "57.jpg",
+    "58.jpg",
+    "59.jpg",
+    "60.jpg",
+    "61.jpg",
+    "62.jpg",
+    "63.jpg",
+    "64.jpg",
+    "65.jpg",
+    "66.jpg",
+    "67.jpg",
+    "68.jpg",
+    "69.jpg",
+    "70.jpg",
+    "71.jpg",
+    "72.jpg",
+    "73.jpg",
+    "74.jpg",
+    "75.jpg",
+    "76.jpg",
+    "77.jpg",
+    "78.jpg",
+    "79.jpg",
+    "80.jpg",
+    "81.jpg",
+    "82.jpg",
+    "83.jpg",
+    "84.jpg",
+    "85.jpg",
+    "86.jpg",
+    "87.jpg",
+    "88.jpg",
+    "89.jpg",
+    "90.jpg",
+    "91.jpg",
+    "92.jpg",
+    "93.jpg",
+    "94.jpg",
+    "95.jpg",
+    "96.jpg",
+    "97.jpg",
+    "98.jpg",
+    "99.jpg",
+    "100.jpg",
+    "101.jpg",
+    "102.jpg",
+    "103.jpg",
+    "104.jpg",
+    "105.jpg",
+    "106.jpg",
+    "107.jpg",
+    "108.jpg",
+    "109.jpg",
+    "110.jpg",
+    "111.jpg",
+    "112.jpg",
+    "113.jpg",
+    "114.jpg",
+    "115.jpg",
+    "116.jpg",
+    "117.jpg",
+    "2025-04-18_media~Snapchat-2104260153.zip.nomedia.mp4",
+    "Snapchat-107411693.mp4",
+    "Snapchat-1671797254.mp4",
+    "VID-20251106-WA0093.mp4"
+];
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -11,17 +143,60 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
 
     /* ----------------------------------------------------------------------
-       2. DYNAMICALLY GENERATE MASONRY GRID (125 IMAGES)
+       1. HERO ENTRANCE ANIMATIONS (GSAP Timeline)
        ---------------------------------------------------------------------- */
-    const galleryGrid = document.getElementById('gallery-grid');
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
+
+    heroTl.fromTo('.hero-badge', 
+        { y: -30, opacity: 0 }, 
+        { y: 0, opacity: 1 }
+    )
+    .fromTo('.title-sub', 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1 }, 
+        '-=0.9'
+    )
+    .fromTo('.title-main', 
+        { y: 40, opacity: 0, scale: 0.95 }, 
+        { y: 0, opacity: 1, scale: 1, duration: 1.4 }, 
+        '-=0.9'
+    )
+    .fromTo('.hero-cover-frame', 
+        { y: 50, opacity: 0, scale: 0.96 }, 
+        { y: 0, opacity: 1, scale: 1, duration: 1.4 }, 
+        '-=0.9'
+    )
+    .fromTo('.scroll-indicator', 
+        { opacity: 0, y: 20 }, 
+        { opacity: 1, y: 0 }, 
+        '-=0.7'
+    );
+
+    /* ----------------------------------------------------------------------
+       2. TOP SCROLL PROGRESS BAR
+       ---------------------------------------------------------------------- */
+    window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        document.getElementById('scroll-progress').style.width = `${progress}%`;
+    });
+
+    /* ----------------------------------------------------------------------
+       3. DYNAMIC MASONRY GRID FOR EVERY SINGLE FILE IN tamanna/
+       ---------------------------------------------------------------------- */
+    const masonryGrid = document.getElementById('masonry-grid');
     const loadMoreBtn = document.getElementById('load-more-btn');
-    const BATCH_SIZE = 24; // Load in smooth performant batches
+    const BATCH_SIZE = 28;
     let currentIndex = 0;
 
-    function renderImageBatch() {
-        if (!galleryGrid) return;
+    // Filter out 1.jpg (used in Hero) from gallery grid to avoid duplication if desired, 
+    // or include all files. We will render all remaining items.
+    const galleryItems = tamannaMediaFiles.filter(file => file !== "1.jpg");
 
-        const nextBatch = galleryImages.slice(currentIndex, currentIndex + BATCH_SIZE);
+    function renderBatch() {
+        if (!masonryGrid) return;
+
+        const nextBatch = galleryItems.slice(currentIndex, currentIndex + BATCH_SIZE);
 
         nextBatch.forEach((filename, idx) => {
             const gridItem = document.createElement('div');
@@ -30,26 +205,44 @@ document.addEventListener('DOMContentLoaded', () => {
             
             gridItem.className = `grid-item ${glowClass} gsap-grid-item`;
 
-            // Image tag pointing to tamanna/ directory as specified
-            const img = document.createElement('img');
-            img.src = `tamanna/${filename}`;
-            img.alt = `Tamanna Memory ${filename}`;
-            img.className = 'grid-img';
-            img.loading = 'lazy';
+            const isVideo = filename.toLowerCase().endsWith('.mp4') || 
+                            filename.toLowerCase().endsWith('.mov') || 
+                            filename.toLowerCase().endsWith('.webm');
 
-            // Graceful error handling for missing files
-            img.onerror = function() {
-                // If a user hasn't added all 125 photos yet, show an aesthetic placeholder
-                this.onerror = null;
-                this.src = `tamanna/IMG-20260919-WA0071.jpg`;
-            };
+            if (isVideo) {
+                // Video Element with autoplay loop muted playsinline
+                const video = document.createElement('video');
+                video.src = `tamanna/${filename}`;
+                video.className = 'grid-video media-element';
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.playsInline = true;
+                video.setAttribute('playsinline', '');
+                video.preload = 'metadata';
 
-            gridItem.appendChild(img);
-            galleryGrid.appendChild(gridItem);
+                const badge = document.createElement('span');
+                badge.className = 'media-type-badge';
+                badge.textContent = '▶ VIDEO';
 
-            // Animate grid item with GSAP ScrollTrigger
+                gridItem.appendChild(video);
+                gridItem.appendChild(badge);
+            } else {
+                // Photo Image Element
+                const img = document.createElement('img');
+                img.src = `tamanna/${filename}`;
+                img.alt = `Tamanna Memory ${filename}`;
+                img.className = 'grid-img media-element';
+                img.loading = 'lazy';
+
+                gridItem.appendChild(img);
+            }
+
+            masonryGrid.appendChild(gridItem);
+
+            // GSAP ScrollTrigger Float-Up Animation
             gsap.fromTo(gridItem,
-                { opacity: 0, y: 40, scale: 0.94 },
+                { opacity: 0, y: 45, scale: 0.94 },
                 {
                     opacity: 1,
                     y: 0,
@@ -67,25 +260,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentIndex += nextBatch.length;
 
-        if (currentIndex >= galleryImages.length && loadMoreBtn) {
+        if (currentIndex >= galleryItems.length && loadMoreBtn) {
             loadMoreBtn.style.display = 'none';
         }
     }
 
-    // Initial render of first batch
-    renderImageBatch();
-    renderImageBatch(); // render first 48 images
+    // Initial render of first 2 batches for immediate richness
+    renderBatch();
+    renderBatch();
 
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', () => {
-            renderImageBatch();
-            renderImageBatch();
+            renderBatch();
+            renderBatch();
             ScrollTrigger.refresh();
         });
     }
 
+    // Footer Slide Up GSAP Animation
+    gsap.fromTo('.gsap-slide-up',
+        { opacity: 0, y: 60 },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.footer-section',
+                start: 'top 80%'
+            }
+        }
+    );
+
     /* ----------------------------------------------------------------------
-       3. AMBIENT FLOATING BUBBLES CANVAS
+       4. AMBIENT FLOATING BUBBLES CANVAS
        ---------------------------------------------------------------------- */
     const canvas = document.getElementById('ambient-canvas');
     const ctx = canvas.getContext('2d');
@@ -152,63 +360,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     animateBubbles();
-
-    /* ----------------------------------------------------------------------
-       4. HERO & CHAPTER GSAP ANIMATIONS
-       ---------------------------------------------------------------------- */
-    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
-
-    heroTl.fromTo('.hero-badge', 
-        { y: -30, opacity: 0 }, 
-        { y: 0, opacity: 1 }
-    )
-    .fromTo('.title-sub', 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1 }, 
-        '-=0.9'
-    )
-    .fromTo('.title-main', 
-        { y: 40, opacity: 0, scale: 0.95 }, 
-        { y: 0, opacity: 1, scale: 1, duration: 1.4 }, 
-        '-=0.9'
-    )
-    .fromTo('.hero-cover-frame', 
-        { y: 50, opacity: 0, scale: 0.96 }, 
-        { y: 0, opacity: 1, scale: 1, duration: 1.4 }, 
-        '-=0.9'
-    )
-    .fromTo('.scroll-indicator', 
-        { opacity: 0, y: 20 }, 
-        { opacity: 1, y: 0 }, 
-        '-=0.7'
-    );
-
-    // Scroll Progress Line
-    window.addEventListener('scroll', () => {
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (window.scrollY / totalHeight) * 100;
-        document.getElementById('scroll-progress').style.width = `${progress}%`;
-    });
-
-    // Chapter Slide Up GSAP ScrollTrigger Reveals
-    const slideUpElements = document.querySelectorAll('.gsap-slide-up');
-
-    slideUpElements.forEach((el) => {
-        gsap.fromTo(el,
-            { opacity: 0, y: 60 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 82%',
-                    toggleActions: 'play none none reverse'
-                }
-            }
-        );
-    });
 
     /* ----------------------------------------------------------------------
        5. AMBIENT AUDIO SYNTHESIZER (Web Audio API)
@@ -296,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
         triggerConfetti();
         
         setTimeout(() => {
+            wishModal.classList.active = true;
             wishModal.classList.add('active');
             wishModal.setAttribute('aria-hidden', 'false');
         }, 400);

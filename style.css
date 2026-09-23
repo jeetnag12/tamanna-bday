@@ -242,7 +242,7 @@ body {
     filter: drop-shadow(0 10px 25px rgba(255, 112, 166, 0.2));
 }
 
-/* Main Cover Image Frame */
+/* Main Cover Image Frame (tamanna/1.jpg) */
 .hero-cover-wrapper {
     width: 100%;
     max-width: 650px;
@@ -269,7 +269,7 @@ body {
 
 .hero-cover-img {
     width: 100%;
-    height: 380px;
+    height: 420px;
     object-fit: cover;
     display: block;
     border-radius: 24px;
@@ -316,20 +316,20 @@ body {
 }
 
 /* ==========================================================================
-   2. CHAPTER SECTIONS & HEADERS
+   2. GALLERY SECTION & HEADERS
    ========================================================================== */
 
-.chapter-section {
+.gallery-section {
     position: relative;
     padding: 6rem 2rem 8rem 2rem;
-    max-width: 1200px;
+    max-width: 1350px;
     margin: 0 auto;
     z-index: 2;
 }
 
-.chapter-header {
+.gallery-header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 4.5rem;
 }
 
 .section-tag {
@@ -364,145 +364,6 @@ body {
     margin: 1.2rem auto 0 auto;
 }
 
-/* ==========================================================================
-   CHAPTER 1: THE EARLY DAYS (Staggered Layout)
-   ========================================================================== */
-
-.staggered-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.staggered-card.card-left {
-    transform: translateY(-20px);
-}
-
-.staggered-card.card-right {
-    transform: translateY(20px);
-}
-
-.media-frame {
-    position: relative;
-    width: 100%;
-    border-radius: 24px;
-    overflow: hidden;
-    background: #ffffff;
-    border: 3px solid #ffffff;
-    transition: transform 0.5s var(--ease-out-smooth), box-shadow 0.5s;
-}
-
-.media-frame.pink-shadow {
-    box-shadow: 0 20px 45px var(--pink-shadow);
-}
-
-.media-frame.blue-shadow {
-    box-shadow: 0 20px 45px var(--blue-shadow);
-}
-
-.media-frame:hover {
-    transform: translateY(-6px) scale(1.02);
-}
-
-.media-frame.pink-shadow:hover {
-    box-shadow: 0 30px 60px rgba(255, 112, 166, 0.4);
-}
-
-.media-frame.blue-shadow:hover {
-    box-shadow: 0 30px 60px rgba(76, 201, 240, 0.4);
-}
-
-.media-element {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-    display: block;
-    border-radius: 20px;
-}
-
-.card-caption {
-    margin-top: 1.2rem;
-    text-align: center;
-}
-
-.caption-date {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    color: var(--pink-dark);
-    font-weight: 700;
-    text-transform: uppercase;
-    display: block;
-}
-
-.card-caption h4 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-dark);
-}
-
-/* ==========================================================================
-   CHAPTER 2: THE MOVING MEMORY (Center Video)
-   ========================================================================== */
-
-.center-video-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.video-frame {
-    position: relative;
-    width: 100%;
-    max-width: 850px;
-    border-radius: 28px;
-    overflow: hidden;
-    background: #ffffff;
-    border: 4px solid #ffffff;
-    transition: transform 0.5s var(--ease-out-smooth), box-shadow 0.5s;
-}
-
-.video-frame.dual-shadow {
-    box-shadow: -15px 20px 50px rgba(255, 112, 166, 0.22), 15px 20px 50px rgba(76, 201, 240, 0.22);
-}
-
-.video-frame:hover {
-    transform: translateY(-8px);
-    box-shadow: -20px 25px 60px rgba(255, 112, 166, 0.35), 20px 25px 60px rgba(76, 201, 240, 0.35);
-}
-
-.center-video-element {
-    width: 100%;
-    height: 480px;
-    object-fit: cover;
-    display: block;
-    border-radius: 24px;
-}
-
-.video-overlay-badge {
-    position: absolute;
-    bottom: 1.2rem;
-    right: 1.2rem;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--pink-light);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--pink-dark);
-    letter-spacing: 0.15em;
-}
-
-/* ==========================================================================
-   CHAPTER 3: THE BIG MEMORY GRID (125 Files Masonry)
-   ========================================================================== */
-
-.grid-section {
-    max-width: 1350px;
-}
-
 /* CSS Column Masonry Grid */
 .masonry-grid {
     column-count: 4;
@@ -520,7 +381,6 @@ body {
     border: 3px solid #ffffff;
     box-shadow: 0 10px 25px rgba(35, 27, 46, 0.08);
     transition: transform 0.4s var(--ease-out-smooth), box-shadow 0.4s;
-    cursor: pointer;
 }
 
 .grid-item:hover {
@@ -542,7 +402,31 @@ body {
     display: block;
     border-radius: 16px;
     object-fit: cover;
-    transition: filter 0.3s;
+}
+
+.grid-video {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    display: block;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.media-type-badge {
+    position: absolute;
+    bottom: 0.8rem;
+    right: 0.8rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--pink-light);
+    padding: 0.3rem 0.65rem;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--pink-dark);
+    letter-spacing: 0.1em;
+    pointer-events: none;
 }
 
 .grid-actions {
@@ -554,7 +438,7 @@ body {
     background: #ffffff;
     border: 2px solid var(--pink-primary);
     color: var(--pink-dark);
-    padding: 0.9rem 2.5rem;
+    padding: 0.95rem 2.5rem;
     border-radius: 30px;
     font-family: var(--font-heading);
     font-size: 0.95rem;
@@ -572,7 +456,7 @@ body {
 }
 
 /* ==========================================================================
-   5. FOOTER & DARK PINK MESSAGE AREA & SKY BLUE BUTTON
+   3. FOOTER & DARK PINK MESSAGE AREA & SKY BLUE BUTTON
    ========================================================================== */
 
 .footer-section {
@@ -674,10 +558,7 @@ body {
     font-weight: 500;
 }
 
-/* ==========================================================================
-   INTERACTIVE WISH MODAL
-   ========================================================================== */
-
+/* Modal Backdrop & Card */
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -793,7 +674,7 @@ body {
     100% { opacity: 0; transform: translateY(12px); }
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive Rules */
 @media (max-width: 1024px) {
     .masonry-grid {
         column-count: 3;
@@ -805,22 +686,8 @@ body {
         padding: 1rem 1.25rem;
     }
 
-    .staggered-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .staggered-card.card-left,
-    .staggered-card.card-right {
-        transform: none;
-    }
-
-    .media-element {
+    .hero-cover-img {
         height: 320px;
-    }
-
-    .center-video-element {
-        height: 300px;
     }
 
     .masonry-grid {
